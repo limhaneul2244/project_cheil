@@ -26,7 +26,7 @@ $logo: logo;
 }
 
 //border
-@mixin border ($size, $color, $position) {
+@mixin border($size, $color, $position) {
   #{border}-#{$position}: $size solid $color;
 }
 
@@ -52,6 +52,11 @@ $logo: logo;
   #{$name}-#{$location}: $value;
 }
 
+//nth-child
+@mixin nthChild($location, $size) {
+  $location: $size;
+}
+
 // =================header====================
 .header {
   @include positionLocation(fixed, -112px, null, null, 0);
@@ -64,7 +69,6 @@ $logo: logo;
   &.load {
     top: 0;
   }
-
   .header_inner {
     @include positionLocation(relative, null, null, null, null);
     @include flex(flex, space-between, center);
@@ -72,150 +76,181 @@ $logo: logo;
     @include border(2px, #fff, bottom);
     margin: $margin;
   }
-}
+  .header_inner {
+    h1 {
+      @include positionLocation(relative, null, null, null, null);
 
-.header_inner {
-  h1 {
-    @include positionLocation(relative, null, null, null, null);
+      img {
+        @include display(block);
+        @include positionLocation(absolute, 50%, null, null, 0);
+        @include size(null, 36px);
+        z-index: 2;
+        transform: translateY(-50%);
+        @include opacity(0);
+      }
+    }
+  }
 
-    img {
-      @include display(block);
-      @include positionLocation(absolute, 50%, null, null, 0);
-      @include size(null, 36px);
-      z-index: 2;
-      transform: translateY(-50%);
+  .#{logo} {
+    .#{logo}_blue {
+      @include opacity(0);
+    }
+
+    .#{logo}_white {
+      @include opacity(1);
+    }
+  }
+
+  .header.down {
+    @include size(null, 74px);
+    background: #fff;
+    @include whiteSpace(padding, top, 0);
+    @include border(1px, #dcdcdc, bottom);
+    .header_inner {
+      @include border(2px, transparent, bottom);
+    }
+    .#{logo}_blue {
+      @include opacity(1);
+    }
+
+    .#{logo}_white {
       @include opacity(0);
     }
   }
-}
 
-.#{logo} {
-  .#{logo}_blue {
-    @include opacity(0);
-  }
+  .header_right_box {
+    @include flex(flex, flex-end, center);
 
-  .#{logo}_white {
-    @include opacity(1);
-  }
-}
+    .lang_box {
+      @include whiteSpace(padding, right, 50px);
 
-.header.down {
-  @include size(null, 74px);
-  background: #fff;
-  @include whiteSpace(padding, top, 0);
-  @include border(1px, #dcdcdc, bottom);
-  .header_inner {
-    @include border(2px, transparent, bottom);
-  }
-  .#{logo}_blue {
-    @include opacity(1);
-  }
+      a {
+        @include display(inline-block);
+        @include font(16px, #fff, bold, 90px);
+        @include opacity(0.5);
+        transition: color 0.2s ease-in-out, line-height 0.6s ease-in-out;
 
-  .#{logo}_white {
-    @include opacity(0);
-  }
-}
-
-.header_right_box {
-  @include flex(flex, flex-end, center);
-
-  .lang_box {
-    @include whiteSpace(padding, right, 50px);
-
-    a {
-      @include display(inline-block);
-      @include font(16px, #fff, bold, 90px);
-      @include opacity(0.5);
-      transition: color 0.2s ease-in-out, line-height 0.6s ease-in-out;
-
-      // 첫번째 a 선명하게
-      &:nth-child(1) {
-        @include opacity(1);
-        @include whiteSpace(margin, right, 17px);
-      }
-    }
-  }
-
-  .header.down & .lang_box a {
-    color: #000;
-  }
-
-  .btn_all_menu {
-    @include positionLocation(relative, null, null, null, null);
-    @include display(block);
-    @include size(33px, 23px);
-    span {
-      @include positionLocation(absolute, null, null, null, 0);
-      @include display(block);
-      @include size(100%, 3px);
-      transition: all 0.3s ease-in-out;
-      background: #fff;
-      &:nth-child(1) {
-        top: 10px;
-      }
-
-      &:nth-child(2) {
-        top: 20px;
-      }
-    }
-  }
-}
-
-.header.down .btn_all_menu span {
-  background-color: #000;
-}
-
-.gnb_menu_wrap {
-  @include positionLocation(fixed, 0, 0, null, null);
-  @include size(60%, 100%);
-  z-index: 5;
-  padding: 80px 0;
-  background-color: #fff;
-  transition: right 0.6s cubic-bezier(0.78, 0.24, 0.3, 0.89);
-
-  .gnb_menu_inner {
-    @include flex(flex, null, center);
-    @include size(null, 100%);
-    padding: 0 30px 0 100px;
-  }
-}
-.gnb_menu {
-  @include flex(flex, null, null);
-  @include size(100%, null);
-  > li {
-    @include size(20%, null);
-    > a {
-      @include positionLocation(relative, null, null, null, null);
-      @include display(block);
-      @include font(22px, #1a1a1a, bold, 33px);
-      &:after {
-        content: "";
-        @include positionLocation(absolute, null, null, -24px, 0);
-        @include size(30px, 1px);
-        background: #1a1a1a;
-      }
-    }
-    > .sub_name {
-      @include display(none);
-    }
-    > .depth2 {
-      @include whiteSpace(margin, top, 45px);
-      @include size(180px, null);
-      >li {
-        @include whiteSpace(margin, bottom, 14px);
-        >a {
-          @include positionLocation(relative, null, null, null, null);
-          @include display(inline-block);
-          @include font(15px, #1a1a1a, bold, 24px);
-          transition: color .14s ease-in-out;
+        // 첫번째 a 선명하게
+        &:nth-child(1) {
+          @include opacity(1);
+          @include whiteSpace(margin, right, 17px);
         }
       }
-      .depth3 {
-        >li {
-          >a {
-            @include font(null, null, 500, null);
-            color: #5a5a5a;
+    }
+
+    .header.down & .lang_box a {
+      color: #000;
+    }
+
+    .btn_all_menu {
+      @include positionLocation(relative, null, null, null, null);
+      @include display(block);
+      @include size(33px, 23px);
+      span {
+        @include positionLocation(absolute, null, null, null, 0);
+        @include display(block);
+        @include size(100%, 3px);
+        transition: all 0.3s ease-in-out;
+        background: #fff;
+        &:nth-child(1) {
+          top: 10px;
+        }
+
+        &:nth-child(2) {
+          top: 20px;
+        }
+      }
+    }
+  }
+
+  .header.down .btn_all_menu span {
+    background-color: #000;
+  }
+
+  .gnb_menu_wrap {
+    @include display(none);
+    @include positionLocation(fixed, 0, -60%, null, null);
+    @include size(60%, 100%);
+    z-index: 5;
+    padding: 80px 0;
+    background-color: #fff;
+    transition: right 0.6s cubic-bezier(0.78, 0.24, 0.3, 0.89);
+
+    .gnb_menu_inner {
+      @include flex(flex, null, center);
+      @include size(null, 100%);
+      padding: 0 30px 0 100px;
+    }
+  }
+  .gnb_menu {
+    @include flex(flex, null, null);
+    @include size(100%, null);
+    > li {
+      @include size(20%, null);
+      > a {
+        @include positionLocation(relative, null, null, null, null);
+        @include display(block);
+        @include font(22px, #1a1a1a, bold, 33px);
+        &:after {
+          content: "";
+          @include positionLocation(absolute, null, null, -24px, 0);
+          @include size(30px, 1px);
+          background: #1a1a1a;
+        }
+      }
+      > .sub_name {
+        @include display(none);
+      }
+      > .depth2 {
+        @include whiteSpace(margin, top, 45px);
+        @include size(180px, null);
+        > li {
+          @include whiteSpace(margin, bottom, 14px);
+          > a {
+            @include positionLocation(relative, null, null, null, null);
+            @include display(inline-block);
+            @include font(15px, #1a1a1a, bold, 24px);
+            transition: color 0.14s ease-in-out;
           }
+        }
+        .depth3 {
+          > li {
+            > a {
+              @include font(null, null, 500, null);
+              color: #5a5a5a;
+            }
+          }
+        }
+      }
+    }
+  }
+  .menu_wrap_bg {
+    @include display(none);
+    @include positionLocation(fixed, 0, null, null, 0);
+    @include size(100vw, 100vh);
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 4;
+  }
+  //header에 .active가 붙을 경우
+  &.active {
+    .btn_all_menu {
+      z-index: 6;
+      span {
+        background-color: #333;
+
+        &:nth-child(1) {
+          top: 10px;
+          transform: rotate(45deg);
+          // @include nthChild(top, 10px);
+        }
+        &:nth-child(2) {
+          @include size(0, null);
+          // @include nthChild(top, 10px);
+        }
+        &:nth-child(3) {
+          top: 10px;
+          transform: rotate(-45deg);
+          // @include nthChild(top, 10px);
         }
       }
     }
