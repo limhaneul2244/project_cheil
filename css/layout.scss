@@ -1,0 +1,205 @@
+//position
+@mixin position($position, $location, $size) {
+  position: $position;
+  @if ($location == 'top'){
+    top: $size;
+  } @else if ($location == 'right') {
+    right: $size;
+  } @else if ($location == 'bottom') {
+    bottom: $size;
+  } @else {
+    left: $size;
+    
+  }
+  // @mixin location ($top, $right, $bottom, $left) {
+  //   top: $top;
+  //   right: $right;
+  //   bottom: $bottom;
+  //   left: $left;
+  // }
+}
+
+// 선언
+$margin: auto;
+$logo: logo;
+
+//border
+@mixin border($size, $color, $position) {
+  @if ($position == 'top') {
+    #{border}-top: $size solid $color;
+  } @else if ($position == 'bottom') {
+    #{border}-bottom: $size solid $color;
+  } @else if ($position == 'left') {
+    #{border}-left: $size solid $color;
+  } @else {
+    #{border}-right: $size solid $color;
+  }
+}
+
+// default
+@mixin display($display) {
+  display: $display;
+}
+
+// flex
+@mixin flex($dft, $justify, $align) {
+  display: $dft;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+//font
+@mixin font($size, $color, $font-weight) {
+  font-size: $size;
+  color: $color;
+  font-weight: $font-weight;
+}
+
+//opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+}
+// =================header====================
+.header {
+  @include position(fixed);
+  left: 0;
+  top: -112px;
+  width: 100%;
+  z-index: 3;
+  transition: background-color 0.6s ease-in-out, top 0.6s ease-in-out,
+    height 0.6s ease-in-out, padding-top 0.6s ease-in-out;
+  padding-top: 20px;
+
+  &.load {
+    top: 0;
+  }
+
+  .header_inner {
+    @include position(relative);
+    @include flex(flex, space-between, center);
+    width: 1540px;
+    margin: $margin;
+    @include border(2px, #fff, bottom);
+  }
+}
+
+.header_inner {
+  h1 {
+    @include position(relative);
+
+    img {
+      @include position(absolute);
+      @include display(block);
+      left: 0;
+      top: 50%;
+      height: 36px;
+      z-index: 2;
+      transform: translateY(-50%);
+      @include opacity(0);
+    }
+  }
+}
+
+.#{logo} {
+  .#{logo}_blue {
+    @include opacity(0);
+  }
+
+  .#{logo}_white {
+    @include opacity(1);
+  }
+}
+
+.header.down {
+  height: 74px;
+  background: #fff;
+  padding-top: 0;
+  @include border(1px, #dcdcdc, bottom);
+  .header_inner {
+    @include border(2px, transparent, bottom);
+  }
+  .#{logo}_blue {
+    @include opacity(1);
+  }
+
+  .#{logo}_white {
+    @include opacity(0);
+  }
+}
+
+.header_right_box {
+  @include flex(flex, flex-end, center);
+
+  .lang_box {
+    padding-right: 50px;
+
+    a {
+      @include display(inline-block);
+      @include font(16px, #fff, bold);
+      line-height: 90px;
+      @include opacity(0.5);
+      transition: color 0.2s ease-in-out, line-height 0.6s ease-in-out;
+
+      // 첫번째 a 선명하게
+      &:nth-child(1) {
+        @include opacity(1);
+        margin-right: 17px;
+      }
+    }
+  }
+
+  .header.down & .lang_box a {
+    color: #000;
+  }
+
+  .btn_all_menu {
+    @include position(relative);
+    @include display(block);
+    width: 33px;
+    height: 23px;
+
+    span {
+      @include position(absolute);
+      @include display(block);
+      left: 0;
+      width: 100%;
+      height: 3px;
+      transition: all 0.3s ease-in-out;
+      background: #fff;
+
+      &:nth-child(1) {
+        top: 10px;
+      }
+
+      &:nth-child(2) {
+        top: 20px;
+      }
+    }
+  }
+}
+
+.header.down .btn_all_menu span {
+  background-color: #000;
+}
+
+.gnb_menu_wrap {
+  @include position(fixed, right);
+  // right: 0;
+  // top: 0;
+  width: 70%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.gnb_menu {
+  
+}
+
+// =================visual====================
+.visual {
+  @include position(relative);
+  width: 100vw;
+  height: 100vh;
+  background: #ccc;
+  z-index: 0;
+}
