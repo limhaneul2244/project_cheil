@@ -1,72 +1,43 @@
-/*
-Error: Mixin position is missing argument $location.
-        on line 64 of C:\Users\1\Desktop\Getting Started\Getting Started\cheil\css\layout.scss, in `position'
-        from line 64 of C:\Users\1\Desktop\Getting Started\Getting Started\cheil\css\layout.scss
+.header { position: fixed; top: -112px; left: 0; width: 100%; z-index: 3; -webkit-transition: background-color 0.6s ease-in-out, top 0.6s ease-in-out, height 0.6s ease-in-out, padding-top 0.6s ease-in-out; transition: background-color 0.6s ease-in-out, top 0.6s ease-in-out, height 0.6s ease-in-out, padding-top 0.6s ease-in-out; padding-top: 20px; }
+.header.load { top: 0; }
+.header .header_inner { position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 1540px; border-bottom: 2px solid #fff; margin: auto; }
 
-59: @mixin opacity($opacity) {
-60:   opacity: $opacity;
-61: }
-62: // =================header====================
-63: .header {
-64:   @include position(fixed);
-65:   left: 0;
-66:   top: -112px;
-67:   width: 100%;
-68:   z-index: 3;
-69:   transition: background-color 0.6s ease-in-out, top 0.6s ease-in-out,
+.header_inner h1 { position: relative; }
+.header_inner h1 img { display: block; position: absolute; top: 50%; left: 0; height: 36px; z-index: 2; -webkit-transform: translateY(-50%); transform: translateY(-50%); opacity: 0; }
 
-Backtrace:
-C:\Users\1\Desktop\Getting Started\Getting Started\cheil\css\layout.scss:64:in `position'
-C:\Users\1\Desktop\Getting Started\Getting Started\cheil\css\layout.scss:64
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:75:in `block in perform_arguments'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:67:in `zip'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:67:in `perform_arguments'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:362:in `block in visit_mixin'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:98:in `block in with_mixin'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:98:in `with_mixin'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:350:in `visit_mixin'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
-C:/Program Files (x86)/Koala/bin/sass:22:in `load'
-C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Mixin position is missing argument $location.\A         on line 64 of C:\Users\1\Desktop\Getting Started\Getting Started\cheil\css\layout.scss, in `position'\A         from line 64 of C:\Users\1\Desktop\Getting Started\Getting Started\cheil\css\layout.scss\A \A 59: @mixin opacity($opacity) {\A 60:   opacity: $opacity;\A 61: }\A 62: // =================header====================\A 63: .header {\A 64:   @include position(fixed);\A 65:   left: 0;\A 66:   top: -112px;\A 67:   width: 100%;\A 68:   z-index: 3;\A 69:   transition: background-color 0.6s ease-in-out, top 0.6s ease-in-out,"; }
+.logo .logo_blue { opacity: 0; }
+.logo .logo_white { opacity: 1; }
+
+.header.down { height: 74px; background: #fff; padding-top: 0; border-bottom: 1px solid #dcdcdc; }
+.header.down .header_inner { border-bottom: 2px solid transparent; }
+.header.down .logo_blue { opacity: 1; }
+.header.down .logo_white { opacity: 0; }
+
+.header_right_box { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: end; -ms-flex-pack: end; justify-content: flex-end; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.header_right_box .lang_box { padding-right: 50px; }
+.header_right_box .lang_box a { display: inline-block; font-size: 16px; color: #fff; font-weight: bold; line-height: 90px; opacity: 0.5; -webkit-transition: color 0.2s ease-in-out, line-height 0.6s ease-in-out; transition: color 0.2s ease-in-out, line-height 0.6s ease-in-out; }
+.header_right_box .lang_box a:nth-child(1) { opacity: 1; margin-right: 17px; }
+.header.down .header_right_box .lang_box a { color: #000; }
+.header_right_box .btn_all_menu { position: relative; display: block; width: 33px; height: 23px; }
+.header_right_box .btn_all_menu span { position: absolute; left: 0; display: block; width: 100%; height: 3px; -webkit-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; background: #fff; }
+.header_right_box .btn_all_menu span:nth-child(1) { top: 10px; }
+.header_right_box .btn_all_menu span:nth-child(2) { top: 20px; }
+
+.header.down .btn_all_menu span { background-color: #000; }
+
+.gnb_menu_wrap { position: fixed; top: 0; right: 0; width: 60%; height: 100%; z-index: 5; padding: 80px 0; background-color: #fff; -webkit-transition: right 0.6s cubic-bezier(0.78, 0.24, 0.3, 0.89); transition: right 0.6s cubic-bezier(0.78, 0.24, 0.3, 0.89); }
+.gnb_menu_wrap .gnb_menu_inner { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; height: 100%; padding: 0 30px 0 100px; }
+
+.gnb_menu { display: -webkit-box; display: -ms-flexbox; display: flex; width: 100%; }
+.gnb_menu > li { width: 20%; }
+.gnb_menu > li > a { position: relative; display: block; font-size: 22px; color: #1a1a1a; font-weight: bold; line-height: 33px; }
+.gnb_menu > li > a:after { content: ""; position: absolute; bottom: -24px; left: 0; width: 30px; height: 1px; background: #1a1a1a; }
+.gnb_menu > li > .sub_name { display: none; }
+.gnb_menu > li > .depth2 { margin-top: 45px; width: 180px; }
+.gnb_menu > li > .depth2 > li { margin-bottom: 14px; }
+.gnb_menu > li > .depth2 > li > a { position: relative; display: inline-block; font-size: 15px; color: #1a1a1a; font-weight: bold; line-height: 24px; -webkit-transition: color .14s ease-in-out; transition: color .14s ease-in-out; }
+.gnb_menu > li > .depth2 .depth3 > li > a { font-weight: 500; color: #5a5a5a; }
+
+.visual { position: relative; width: 100vw; height: 100vh; background: #ccc; z-index: 0; }
+
+/*# sourceMappingURL=layout.css.map */
