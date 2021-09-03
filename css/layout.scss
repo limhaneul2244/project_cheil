@@ -57,6 +57,13 @@ $logo: logo;
   $location: $size;
 }
 
+//background-size
+@mixin backGround($ti, $bgr, $bgs, $bgp) {
+  text-indent: $ti;
+  background-repeat: $bgr;
+  background-size: $bgs;
+  background-position: $bgp;
+}
 // =================header====================
 .header {
   @include positionLocation(fixed, -112px, null, null, 0);
@@ -86,7 +93,7 @@ $logo: logo;
         @include size(null, 36px);
         z-index: 2;
         transform: translateY(-50%);
-        @include opacity(0);
+        // @include opacity(0);
       }
     }
   }
@@ -101,7 +108,7 @@ $logo: logo;
     }
   }
 
-  .header.down {
+  &.down {
     @include size(null, 74px);
     background: #fff;
     @include whiteSpace(padding, top, 0);
@@ -116,11 +123,14 @@ $logo: logo;
     .#{logo}_white {
       @include opacity(0);
     }
+    .lang_box a {
+      color: #000;
+    }
   }
 
   .header_right_box {
     @include flex(flex, flex-end, center);
-
+    @include size(null, 100%);
     .lang_box {
       @include whiteSpace(padding, right, 50px);
 
@@ -138,14 +148,11 @@ $logo: logo;
       }
     }
 
-    .header.down & .lang_box a {
-      color: #000;
-    }
-
     .btn_all_menu {
       @include positionLocation(relative, null, null, null, null);
       @include display(block);
       @include size(33px, 23px);
+      z-index: 7;
       span {
         @include positionLocation(absolute, null, null, null, 0);
         @include display(block);
@@ -153,25 +160,30 @@ $logo: logo;
         transition: all 0.3s ease-in-out;
         background: #fff;
         &:nth-child(1) {
+          top: 0;
+        }
+        &:nth-child(2) {
           top: 10px;
         }
-
-        &:nth-child(2) {
+        &:nth-child(3) {
           top: 20px;
         }
       }
     }
   }
 
-  .header.down .btn_all_menu span {
+  //header.down이 되었을때
+  &.down .btn_all_menu span {
     background-color: #000;
   }
-
+  &.down .lang_box a {
+    color: #000;
+  }
   .gnb_menu_wrap {
-    @include display(none);
+    //right값을 -60%로 변경해 숨김처리한 뒤 js로 나오게 한다
     @include positionLocation(fixed, 0, -60%, null, null);
     @include size(60%, 100%);
-    z-index: 5;
+    z-index: 6;
     padding: 80px 0;
     background-color: #fff;
     transition: right 0.6s cubic-bezier(0.78, 0.24, 0.3, 0.89);
@@ -182,6 +194,7 @@ $logo: logo;
       padding: 0 30px 0 100px;
     }
   }
+
   .gnb_menu {
     @include flex(flex, null, null);
     @include size(100%, null);
@@ -224,43 +237,113 @@ $logo: logo;
       }
     }
   }
+
+  //햄버거 메뉴 클릭시 왼쪽 바탕화면
   .menu_wrap_bg {
     @include display(none);
     @include positionLocation(fixed, 0, null, null, 0);
     @include size(100vw, 100vh);
     background-color: rgba(0, 0, 0, 0.45);
-    z-index: 4;
+    z-index: 5;
   }
   //header에 .active가 붙을 경우
   &.active {
     .btn_all_menu {
-      z-index: 6;
       span {
         background-color: #333;
-
         &:nth-child(1) {
           top: 10px;
           transform: rotate(45deg);
-          // @include nthChild(top, 10px);
         }
         &:nth-child(2) {
           @include size(0, null);
-          // @include nthChild(top, 10px);
         }
         &:nth-child(3) {
           top: 10px;
           transform: rotate(-45deg);
-          // @include nthChild(top, 10px);
         }
       }
+    }
+    //header에 .active가 붙을 경우 right: -60% -> 0으로 변경
+    .gnb_menu_wrap {
+      right: 0;
     }
   }
 }
 
 // =================visual====================
 .visual {
+  overflow: hidden;
   @include positionLocation(relative, null, null, null, null);
   @include size(100vw, 100vh);
   background: #ccc;
   z-index: 0;
+
+  .visual_slider {
+    @include positionLocation(relative, null, null, null, null);
+    z-index: 0;
+    @include size(100%, 100%);
+
+    li {
+      @include positionLocation(absolute, 0, null, null, 0);
+      @include size(100%, 100%);
+      @include backGround(-9999px, no-repeat, cover, center);
+      transform: scale(1.1);
+      transition: all 2s;
+      @include opacity(0);
+
+      // li에 클래스 on이 붙었을 때
+      &.on {
+        transform: scale(1);
+        @include opacity(1);
+      }
+      // slider
+      @for $i from 1 through 6 {
+        &.mv#{$i} {
+          background-image: url(../img/mv#{$i}.jpg);
+        }
+      }
+    }
+  }
+  .visual_txt_wrap {
+    @include positionLocation(absolute, 0, null, null, 120px);
+    @include size(null, 100%);
+    @include flex(flex, null, center);
+    z-index: 1;
+    .visual_main_txt {
+      // @include display(block);
+      @include font(44px, #fff, bold, 54px);
+      font-family: 'Open Sans';
+    }
+    .visual_sub_txt {
+      @include font(15px, #fff, 500, 24px);
+      @include whiteSpace(margin, top, 35px);
+    }
+    .visual_btn {
+      @include whiteSpace(margin, top, 50px);
+      a {
+        @include display(inline-block);
+        padding: 0 20px;
+        @include size(185px, null);
+        @include font(13px, #fff, bold, 46px);
+        border: 1px solid #fff;
+        transition: background-color .2s ease-in-out;
+
+        //a태그 hover했을때 변경사항
+        &:hover {
+          color: #1a1a1a;
+          background: #fff;
+          span {
+            background-image: url(../img/mvBtn_arrow_ov.png);
+          }
+        }
+        span {
+          @include display(block);
+          @include backGround(null, no-repeat, 32px, right);
+          background-image: url(../img/visualBtn_arrow.png);
+          transition: all .2s ease-in-out;
+        }
+      }
+    }
+  }
 }
