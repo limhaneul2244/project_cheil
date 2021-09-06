@@ -345,5 +345,34 @@ $logo: logo;
         }
       }
     }
+    .visual_nav {
+      @include positionLocation(absolute, null, null, null, -80px);
+      @include size(36px, null);
+      cursor: pointer;
+      >li {
+        @include size(50%, 2px);
+        @include opacity(0.5);
+        background-color: #fff;
+        text-indent:-9999px;
+        transition: width 0.3s ease-in-out;
+        +li {
+          @include whiteSpace(margin, top, 19px);
+        }
+      }
+      li.active {
+        @include size(100%, null);
+        @include opacity(1);
+      }
+    }
+  }
+  .icon_scroll {
+    @include positionLocation(absolute, null, null, 10px, calc(50% - 10px));
+    transition: all 1s ease-in-out;
+    @include opacity(0);
+    animation: scroll 0.8s ease-in-out infinite;
+  }
+  &.down .icon_scroll {
+    @include opacity(1);
+    bottom: 40px;
   }
 }

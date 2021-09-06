@@ -57,5 +57,11 @@
 .visual .visual_txt_wrap .visual_btn a:hover { color: #1a1a1a; background: #fff; }
 .visual .visual_txt_wrap .visual_btn a:hover span { background-image: url(../img/mvBtn_arrow_ov.png); }
 .visual .visual_txt_wrap .visual_btn a span { display: block; background-repeat: no-repeat; background-size: 32px; background-position: right; background-image: url(../img/visualBtn_arrow.png); -webkit-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
+.visual .visual_txt_wrap .visual_nav { position: absolute; left: -80px; width: 36px; cursor: pointer; }
+.visual .visual_txt_wrap .visual_nav > li { width: 50%; height: 2px; opacity: 0.5; background-color: #fff; text-indent: -9999px; -webkit-transition: width 0.3s ease-in-out; transition: width 0.3s ease-in-out; }
+.visual .visual_txt_wrap .visual_nav > li + li { margin-top: 19px; }
+.visual .visual_txt_wrap .visual_nav li.active { width: 100%; opacity: 1; }
+.visual .icon_scroll { position: absolute; bottom: 10px; left: calc(50% - 10px); -webkit-transition: all 1s ease-in-out; transition: all 1s ease-in-out; opacity: 0; -webkit-animation: scroll 0.8s ease-in-out infinite; animation: scroll 0.8s ease-in-out infinite; }
+.visual.down .icon_scroll { opacity: 1; bottom: 40px; }
 
 /*# sourceMappingURL=layout.css.map */

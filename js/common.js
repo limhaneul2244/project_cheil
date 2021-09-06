@@ -5,13 +5,63 @@ $(function () {
         const visualHeight = $('.visual').outerHeight();
         const h_Height = header.outerHeight();
         const scrollTop = $(window).scrollTop(); //뷰포트 높이값
+        const visual = $('.visual');
+
         header.addClass('load');
+        visual.addClass('down');
         if (scrollTop >= visualHeight - h_Height) { //visual높이값-header높이값뺀 값이 스크롤 높이가 크거나 같을때
             header.addClass('down');
         } else {
             header.removeClass('down');
         }
     });
+
+
+    //visual class on붙었을 때
+    visual();
+
+    function visual() {
+        const visualSlider = $('.visual .visual_slider li'); //슬라이드 이미지
+        const visualNav = $('.visual_nav li'); //슬라이드 왼쪽 nav
+        const visualLength = visualSlider.length - 1;
+
+        setInterval(slideEvent, 3500);
+        first();
+
+        function first() {
+            visualSlider.eq(0).addClass('on');
+            visualNav.eq(0).addClass('active');
+        }
+        function slideEvent() {
+            let i = $('.visual .visual_slider li.on').index();
+            reset(); //초기화
+            console.log(i);
+
+            if (i < visualLength) {
+                visualSlider.eq(i + 1).addClass('on');
+                visualNav.eq(i + 1).addClass('active');
+            }
+            if (i == visualLength) { //값이 동일해질 경우
+                i = 0;
+                visualSlider.eq(i).addClass('on');
+                visualNav.eq(i).addClass('active');
+            }
+        }
+
+        //visualNav 클릭 이벤트
+        visualNav.click(function(){
+            let i = $(this).index();
+
+            reset();
+            $(this).addClass('active');
+            visualSlider.eq(i).addClass('on');
+        });
+
+        function reset() {
+            visualSlider.removeClass('on');
+            visualNav.removeClass('active');
+        }
+    };
 
     //gnbmenu 클릭
     gnbMenu();
