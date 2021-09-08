@@ -1,4 +1,6 @@
 $(function () {
+    const ani = $('.ani');
+
     // header scroll
     $(window).on('load scroll', function () {
         const header = $('header');
@@ -16,7 +18,6 @@ $(function () {
         }
     });
 
-
     //visual class on붙었을 때
     visual();
 
@@ -32,6 +33,7 @@ $(function () {
             visualSlider.eq(0).addClass('on');
             visualNav.eq(0).addClass('active');
         }
+
         function slideEvent() {
             let i = $('.visual .visual_slider li.on').index();
             reset(); //초기화
@@ -49,7 +51,7 @@ $(function () {
         }
 
         //visualNav 클릭 이벤트
-        visualNav.click(function(){
+        visualNav.click(function () {
             let i = $(this).index();
 
             reset();
@@ -82,4 +84,24 @@ $(function () {
             }
         });
     };
+
+    //화면 스크롤시 애니메이션 효과
+    $.fn.moving = function () {
+        let elementTop = $(this).offset().top;
+        let elementBottom = elementTop + $(this).outerHeight();
+        let viewportTop = $(window).scrollTop();
+        let viewportBottom = viewportTop + $(window).height();
+
+        return (viewportTop < elementBottom) && (elementTop < viewportBottom);
+    };
+
+    $(window).on('load resize scroll', function () {
+        ani.each(function () { //ani라는 클래스를 순차적으로 찾아줌
+            if ($(this).moving()) {
+                $(this).addClass('moving');
+            } else {
+                $(this).removeClass('moving');
+            }
+        });
+    });
 });

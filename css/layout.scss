@@ -313,7 +313,7 @@ $logo: logo;
     .visual_main_txt {
       // @include display(block);
       @include font(44px, #fff, bold, 54px);
-      font-family: 'Open Sans';
+      font-family: "Open Sans";
     }
     .visual_sub_txt {
       @include font(15px, #fff, 500, 24px);
@@ -327,7 +327,7 @@ $logo: logo;
         @include size(185px, null);
         @include font(13px, #fff, bold, 46px);
         border: 1px solid #fff;
-        transition: background-color .2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;
 
         //a태그 hover했을때 변경사항
         &:hover {
@@ -341,7 +341,7 @@ $logo: logo;
           @include display(block);
           @include backGround(null, no-repeat, 32px, right);
           background-image: url(../img/visualBtn_arrow.png);
-          transition: all .2s ease-in-out;
+          transition: all 0.2s ease-in-out;
         }
       }
     }
@@ -349,13 +349,13 @@ $logo: logo;
       @include positionLocation(absolute, null, null, null, -80px);
       @include size(36px, null);
       cursor: pointer;
-      >li {
+      > li {
         @include size(50%, 2px);
         @include opacity(0.5);
         background-color: #fff;
-        text-indent:-9999px;
+        text-indent: -9999px;
         transition: width 0.3s ease-in-out;
-        +li {
+        + li {
           @include whiteSpace(margin, top, 19px);
         }
       }

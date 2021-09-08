@@ -1,0 +1,99 @@
+//opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+}
+//위치값 포함 position
+@mixin positionLocation($position, $t, $rgt, $btm, $lft) {
+  position: $position;
+  top: $t;
+  right: $rgt;
+  bottom: $btm;
+  left: $lft;
+}
+// size
+@mixin size($w, $h) {
+  width: $w;
+  height: $h;
+}
+// ==========================================
+@keyframes scroll {
+  0% {
+    bottom: 20px;
+  }
+  50% {
+    bottom: 40px;
+  }
+  100% {
+    bottom: 20px;
+  }
+}
+
+/* Y축이동 */
+.ani.y_bottom {
+  @include opacity(0);
+  transform: translateY(40px);
+  &.moving {
+    @include opacity(1);
+    transform: translateY(0);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+}
+/* X축이동 left */
+.ani.x_left {
+  @include opacity(0);
+  transform: translateX(-40px);
+  &.moving {
+    @include opacity(1);
+    transform: translateX(0);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+}
+/* right */
+.ani.x_right {
+  @include opacity(0);
+  transform: translateX(40px);
+  &.moving {
+    @include opacity(0);
+    transform: translate(0);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+}
+
+@for $s from 2 through 8 {
+  .ani.delay0#{$s} {
+    transition-delay: (($s/10) + s);
+  }
+}
+
+/* img scale */
+.ani.scale_img {
+  &.moving {
+    img {
+      @include opacity(1);
+      transform: scale(1);
+    }
+  }
+  //.moving 붙지 않았을 때
+  img {
+    @include opacity(0);
+    transform: scale(1.2);
+    transition: all 1s ease-in-out;
+  }
+}
+/* .cover */
+.ani {
+  &.cover {
+    &:after {
+      content: "";
+      @include positionLocation(absolute, null, null, -1px, 0);
+      @include size(100%, 101%);
+      background-color: #fff;
+      transition: all 1s ease-in-out;
+    }
+    &.moving {
+      &:after {
+        height: 0;
+      }
+    }
+  }
+}
